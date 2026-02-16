@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Барабанный тимбилдинг — выездные корпоративы и мероприятия в Дубне</title>
+  <meta name="description" content="Африканские барабаны: выездные корпоративные тимбилдинги и мероприятия в Дубне у нас в помещении. Быстро, ярко, объединяет команду." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --card:#11131a;
+      --soft:#161a24;
+      --text:#e9ecf1;
+      --muted:#aab2c0;
+      --brand:#ff4d00;
+      --brand2:#ff7a3d;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius:16px;
+      --radius2:22px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(255,77,0,.18), transparent 60%),
+        radial-gradient(900px 700px at 90% 10%, rgba(255,122,61,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .nav{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,12,16,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .navin{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:10px;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;
+    }
+    .badge{
+      font-size:12px; padding:4px 10px; border-radius:999px;
+      background: rgba(255,77,0,.12);
+      border:1px solid rgba(255,77,0,.25);
+      color: #ffd5c4;
+      white-space:nowrap;
+    }
+    .navlinks{display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a{
+      text-decoration:none;
+      font-size:14px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    .navlinks a:hover{
+      color:var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.04);
+    }
+
+    .hero{padding:44px 0 18px}
+    .herogrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .herogrid{grid-template-columns:1fr}
+    }
+    .hcard{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hmain{padding:26px}
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      font-size:13px; color:#ffd5c4;
+      background: rgba(255,77,0,.10);
+      border:1px solid rgba(255,77,0,.25);
+      padding:6px 10px; border-radius:999px;
+      margin-bottom:12px;
+    }
+    h1{margin:10px 0 10px; font-size:40px; line-height:1.1}
+    @media (max-width: 480px){
+      h1{font-size:32px}
+    }
+    .lead{color:var(--muted); font-size:16px; max-width:62ch}
+    .ctaRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      appearance:none; border:0; cursor:pointer;
+      padding:12px 14px;
+      border-radius: 12px;
+      font-weight:700;
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btnPrimary{
+      background: linear-gradient(180deg, var(--brand), #ff2f00);
+      color: #0a0a0a;
+    }
+    .btnPrimary:hover{background: linear-gradient(180deg, #ff5f1f, #ff2f00)}
+    .btnGhost{
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color: var(--text);
+    }
+    .btnGhost:hover{background: rgba(255,255,255,.06)}
+    .mini{
+      font-size:13px; color:var(--muted); margin-top:12px
+    }
+
+    .aside{
+      padding:20px;
+      display:flex; flex-direction:column; gap:12px;
+    }
+    .pillgrid{display:grid; grid-template-columns: 1fr; gap:10px}
+    .pill{
+      padding:14px; border-radius:14px;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+    }
+    .pill b{display:block; margin-bottom:4px}
+    .pill span{color:var(--muted); font-size:13px}
+
+    .section{padding:22px 0}
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 900px){
+      .grid2{grid-template-columns: 1fr}
+    }
+    .card{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .card h2{margin:0 0 8px; font-size:22px}
+    .card p{margin:0 0 12px; color:var(--muted)}
+    .list{margin:0; padding-left:18px; color:var(--muted)}
+    .list li{margin:8px 0}
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tag{
+      font-size:12px; padding:6px 10px; border-radius:999px;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .pricing{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 900px){
+      .pricing{grid-template-columns: 1fr}
+    }
+    .pricecard{
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:16px;
+    }
+    .price{
+      font-size:28px; font-weight:800; margin:6px 0 8px;
+      letter-spacing:-.3px;
+    }
+    .price small{font-size:13px; color:var(--muted); font-weight:600}
+    .muted{color:var(--muted)}
+    .fine{font-size:12px; color:var(--muted); margin-top:8px}
+
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+    }
+    @media (max-width: 900px){
+      .contactGrid{grid-template-columns: 1fr}
+    }
+    label{display:block; font-size:13px; color:var(--muted); margin:10px 0 6px}
+    input, textarea, select{
+      width:100%;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color: var(--text);
+      border-radius: 12px;
+      padding:12px 12px;
+      outline:none;
+      font: inherit;
+    }
+    textarea{min-height:110px; resize:vertical}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width: 520px){
+      .row{grid-template-columns:1fr}
+    }
+    .help{
+      font-size:12px; color:var(--muted); margin-top:8px;
+    }
+
+    .footer{
+      border-top:1px solid var(--line);
+      padding:24px 0 38px;
+      color: var(--muted);
+      font-size:13px;
+    }
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 10px 0 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="wrap navin">
+      <div class="logo">
+        <span style="display:inline-flex;width:28px;height:28px;border-radius:10px;background:rgba(255,77,0,.18);border:1px solid rgba(255,77,0,.28);align-items:center;justify-content:center;">🥁</span>
+        <span>Drum Team</span>
+        <span class="badge">MVP / быстро и по делу</span>
+      </div>
+      <nav class="navlinks">
+        <a href="#corporate">Выездные</a>
+        <a href="#dubna">Дубна</a>
+        <a href="#pricing">Цены</a>
+        <a href="#contact">Заявка</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="herogrid">
+        <div class="hcard">
+          <div class="hmain">
+            <div class="kicker">Африканские барабаны • тимбилдинг • вау-эффект</div>
+            <h1>Корпоративы на барабанах: выездные и в Дубне у нас</h1>
+            <p class="lead">
+              За 60–90 минут команда превращается в единый ритм: игры, синхрон, эмоции.
+              Формат подходит для HR-мероприятий, корпоративов, конференций и стратегических сессий.
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn btnPrimary" href="#corporate" aria-label="Перейти к выездным корпоративам">🚐 Выездные корпоративы</a>
+              <a class="btn btnGhost" href="#dubna" aria-label="Перейти к мероприятиям в Дубне">🏠 Мероприятия в Дубне</a>
+              <a class="btn btnGhost" href="#contact" aria-label="Перейти к заявке">✍️ Оставить заявку</a>
+            </div>
+
+            <div class="mini">Сейчас это шаблон: позже заменишь тексты/фото/цены — структура уже “как надо”.</div>
+          </div>
+        </div>
+
+        <aside class="hcard">
+          <div class="aside">
+            <div class="pillgrid">
+              <div class="pill">
+                <b>Что получаете</b>
+                <span>сплочение, энергия, вовлечённость, антистресс</span>
+              </div>
+              <div class="pill">
+                <b>Формат</b>
+                <span>африканские барабаны + командные игры + финальный “перформанс”</span>
+              </div>
+              <div class="pill">
+                <b>Для MVP</b>
+                <span>быстро проверить спрос: ссылка → рассылка → заявки</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="tagrow">
+              <span class="tag">HR</span>
+              <span class="tag">Корпоратив</span>
+              <span class="tag">Конференция</span>
+              <span class="tag">Стратсессия</span>
+              <span class="tag">Антистресс</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="corporate" class="section">
+      <div class="grid2">
+        <div class="card">
+          <h2>🚐 Выездной корпоративный тимбилдинг (африканские барабаны)</h2>
+          <p>
+            Приезжаем к вам на площадку: офис / загород / конференц-зал / лофт.
+            Привозим барабаны и проводим музыкальные командные игры.
+          </p>
+          <ul class="list">
+            <li><b>Разогрев:</b> простые ритмы, включаем “даже тех, кто стесняется”.</li>
+            <li><b>Командные игры:</b> синхрон, лидерство, внимание, взаимодействие.</li>
+            <li><b>Финал:</b> общий “перформанс” + фото/видео моменты.</li>
+          </ul>
+          <div class="tagrow">
+            <span class="tag">выезд</span><span class="tag">60–90 мин</span><span class="tag">любой уровень</span><span class="tag">интерактив</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Как это работает</h2>
+          <ul class="list">
+            <li><b>1) Созвон 10 минут:</b> цель, дата, количество людей, формат.</li>
+            <li><b>2) Предложение:</b> 2–3 сценария под вашу задачу.</li>
+            <li><b>3) Проведение:</b> приезжаем, настраиваем, ведём программу.</li>
+            <li><b>4) Результат:</b> энергия, связь в команде, “все в одном ритме”.</li>
+          </ul>
+          <p class="fine">Позже добавим реальные фото, кейсы и отзывы — сейчас важна структура MVP.</p>
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="#contact">Оставить заявку на выезд</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dubna" class="section">
+      <div class="grid2">
+        <div class="card">
+          <h2>🏠 Мероприятия в Дубне (в нашем помещении)</h2>
+          <p>
+            Вы приезжаете к нам. Подбираем пространство под размер группы и задачу:
+            камерно для команды или шире — для события.
+          </p>
+          <ul class="list">
+            <li><b>Удобно:</b> вам не нужно искать площадку и думать про логистику.</li>
+            <li><b>Гибко:</b> формат адаптируется под состав группы и цели.</li>
+            <li><b>То же “вау”:</b> барабаны, игры, финальный общий ритм.</li>
+          </ul>
+          <div class="tagrow">
+            <span class="tag">Дубна</span><span class="tag">в помещении</span><span class="tag">под группу</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Для кого подходит</h2>
+          <ul class="list">
+            <li>Команды, которым нужно “перезагрузиться” и почувствовать связь.</li>
+            <li>Руководители/HR — когда хочется живого, а не “в очередной раз квиз”.</li>
+            <li>Гости и друзья — дни рождения, небольшие компании (по запросу).</li>
+          </ul>
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="#contact">Записаться в Дубне</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="card">
+        <h2>Цены (пока шаблон)</h2>
+        <p class="muted">Поставил структуру, ты потом заменишь цифры/условия. Можно оставить “от …” для MVP.</p>
+
+        <div class="pricing">
+          <div class="pricecard">
+            <b>Выездной формат</b>
+            <div class="price">от ХХ 000 ₽ <small>/ мероприятие</small></div>
+            <ul class="list">
+              <li>60–90 минут</li>
+              <li>барабаны + ведущий</li>
+              <li>сценарий под цель</li>
+            </ul>
+          </div>
+
+          <div class="pricecard">
+            <b>В Дубне (у нас)</b>
+            <div class="price">от ХХ 000 ₽ <small>/ сессия</small></div>
+            <ul class="list">
+              <li>подбор пространства</li>
+              <li>игры + финальный ритм</li>
+              <li>для групп разного размера</li>
+            </ul>
+          </div>
+
+          <div class="pricecard">
+            <b>Индивидуально</b>
+            <div class="price">по запросу</div>
+            <ul class="list">
+              <li>большие группы</li>
+              <li>нестандартная площадка</li>
+              <li>серия мероприятий</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="fine">Совет для MVP: не бойся “от ХХ 000 ₽” — это норм для первичной проверки спроса.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="contactGrid">
+        <div class="card">
+          <h2>Оставить заявку</h2>
+          <p class="muted">
+            На GitHub Pages нет “серверной” формы. Поэтому самый надёжный вариант — отправка заявки через почту (mailto).
+            Это сработает сразу. Позже можно подключить Formspree/Tilda-формы/CRM.
+          </p>
+
+          <!-- Настрой: замени EMAIL ниже на свою почту -->
+          <form id="leadForm">
+            <div class="row">
+              <div>
+                <label for="name">Имя</label>
+                <input id="name" name="name" placeholder="Как к вам обращаться" autocomplete="name" />
+              </div>
+              <div>
+                <label for="phone">Телефон / мессенджер</label>
+                <input id="phone" name="phone" placeholder="+7…" autocomplete="tel" />
+              </div>
+            </div>
+
+            <label for="format">Какой формат интересует?</label>
+            <select id="format" name="format">
+              <option value="Выездной корпоратив (барабаны)">Выездной корпоратив (барабаны)</option>
+              <option value="В Дубне (в нашем помещении)">В Дубне (в нашем помещении)</option>
+              <option value="Нужно подобрать формат">Нужно подобрать формат</option>
+            </select>
+
+            <div class="row">
+              <div>
+                <label for="people">Сколько человек?</label>
+                <input id="people" name="people" placeholder="например: 25" inputmode="numeric" />
+              </div>
+              <div>
+                <label for="date">Дата/сроки</label>
+                <input id="date" name="date" placeholder="например: в феврале / 12.03" />
+              </div>
+            </div>
+
+            <label for="msg">Комментарий</label>
+            <textarea id="msg" name="msg" placeholder="Город/площадка (для выезда), цель мероприятия, пожелания…"></textarea>
+
+            <div class="ctaRow">
+              <button class="btn btnPrimary" type="submit">📩 Отправить заявку</button>
+              <!-- Настрой эти ссылки под себя позже -->
+              <a class="btn btnGhost" id="waLink" href="#" rel="nofollow">WhatsApp</a>
+              <a class="btn btnGhost" id="tgLink" href="#" rel="nofollow">Telegram</a>
+            </div>
+
+            <div class="help">
+              Чтобы кнопка “Отправить заявку” ушла на твою почту, в коде ниже замени <b>YOUR_EMAIL@MAIL.COM</b> на свою почту.
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Контакты (заполни позже)</h2>
+          <p class="muted">
+            Тут поставь реальные данные: город, телефон, соцсети, время ответа.  
+            Для MVP можно оставить минимум: телефон + мессенджер.
+          </p>
+          <ul class="list">
+            <li><b>Город:</b> Дубна / выезд по региону (уточнить)</li>
+            <li><b>Телефон:</b> +7 XXX XXX-XX-XX</li>
+            <li><b>Email:</b> YOUR_EMAIL@MAIL.COM</li>
+          </ul>
+          <p class="fine">
+            Хочешь “выглядеть дороже” — добавим позже: кейсы, фото, 3–5 FAQ, отзывы.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap" style="padding:0">
+        © <span id="y"></span> Drum Team • Африканские барабаны • Тимбилдинг
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // 1) Год в футере
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // 2) Плавная прокрутка по якорям
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // 3) Настрой мессенджеры (можно оставить как # и заполнить позже)
+    // Примеры:
+    // WhatsApp: https://wa.me/79991234567
+    // Telegram: https://t.me/yourusername
+    const wa = document.getElementById('waLink');
+    const tg = document.getElementById('tgLink');
+    wa.href = "#"; // заменишь позже
+    tg.href = "#"; // заменишь позже
+
+    // 4) Форма заявки через mailto — работает на GitHub Pages "с первого раза"
+    const EMAIL = "YOUR_EMAIL@MAIL.COM"; // <-- ЗАМЕНИ НА СВОЮ ПОЧТУ
+
+    document.getElementById('leadForm').addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const name = (document.getElementById('name').value || "").trim();
+      const phone = (document.getElementById('phone').value || "").trim();
+      const format = (document.getElementById('format').value || "").trim();
+      const people = (document.getElementById('people').value || "").trim();
+      const date = (document.getElementById('date').value || "").trim();
+      const msg = (document.getElementById('msg').value || "").trim();
+
+      const subject = encodeURIComponent("Заявка: барабанный тимбилдинг (" + format + ")");
+      const bodyLines = [
+        "Имя: " + (name || "—"),
+        "Контакт: " + (phone || "—"),
+        "Формат: " + (format || "—"),
+        "Количество: " + (people || "—"),
+        "Дата/сроки: " + (date || "—"),
+        "",
+        "Комментарий:",
+        msg || "—",
+        "",
+        "Источник: сайт (GitHub Pages)"
+      ];
+      const body = encodeURIComponent(bodyLines.join("\n"));
+
+      // Проверка: чтобы ты не забыл заменить email
+      if (EMAIL.includes("YOUR_EMAIL")) {
+        alert("Сначала замени YOUR_EMAIL@MAIL.COM на свою почту в коде (переменная EMAIL).");
+        return;
+      }
+
+      window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
