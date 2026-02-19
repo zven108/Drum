@@ -1,0 +1,1834 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>africa events — музыкальные тимбилдинги</title>
+  <meta name="description" content="музыкальные тимбилдинги — объединяем музыкой" />
+
+  <!-- Google Fonts (close to Tilda feel) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Main (rounded modern grotesk, Tilda-ish) -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Accent (confident heavy for caps headers) -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#fff;
+      --text:#111;
+      --muted:#6b7280;
+      --line:#eaeaea;
+      --soft:#f5f5f5;
+      --accent:#c56a44;
+      --btnBg:#111;
+      --btnText:#fff;
+
+      --max:1120px;
+      --pad:18px;
+      --radius:14px;
+
+      --fontMain:"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --fontAccent:"Rubik", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+      --shadow: 0 12px 30px rgba(17,17,17,.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--fontMain);
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
+    .center{text-align:center}
+    .stack{display:flex; flex-direction:column; gap:14px}
+
+    /* “Tilda-like air” */
+    .hero{padding:28px 0 10px}
+    .section{padding:18px 0} /* compact, but still airy */
+    .spacerS{height:10px}
+    .spacerM{height:16px}
+
+    /* Typography */
+    .brandline{
+      font-size:12px;
+      letter-spacing:.14em;
+      color:var(--muted);
+      margin:0 0 10px;
+    }
+    .h1{
+      font-family:var(--fontAccent);
+      font-weight:900;
+      letter-spacing:.06em;
+      font-size:34px;
+      margin:0 0 10px;
+    }
+    @media (max-width:520px){ .h1{font-size:28px} }
+
+    .subtitle{
+      font-size:16px;
+      color:var(--muted);
+      margin:0 auto;
+      max-width:70ch;
+      font-weight:500;
+    }
+
+    .desc{
+      margin:14px auto 0;
+      max-width:78ch;
+      font-size:15px;
+      color:var(--text);
+      font-weight:600; /* accent */
+      white-space:pre-line; /* keep line breaks */
+    }
+
+    .secTitle{
+      font-family:var(--fontAccent);
+      font-weight:900;
+      letter-spacing:.12em;
+      font-size:13px;
+      margin:0 0 10px;
+    }
+    .secHint{
+      margin:0 auto 12px;
+      max-width:86ch;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* Buttons (rect + rounded) */
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 16px;
+      border-radius:var(--radius);
+      border:1px solid rgba(17,17,17,.14);
+      background:var(--btnBg);
+      color:var(--btnText);
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.02em;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .12s ease, filter .12s ease, opacity .2s ease;
+      min-height:44px;
+    }
+    .btn:hover{filter:brightness(.98)}
+    .btn:active{transform:translateY(1px)}
+    .btnWide{width:min(980px, 100%); margin:0 auto}
+    .btnSoft{
+      background:#fff;
+      color:var(--text);
+      border-color:rgba(17,17,17,.18);
+    }
+    .btnSoft:hover{border-color:rgba(17,17,17,.35)}
+    .btnIcon{
+      gap:10px;
+    }
+    .btnIcon svg{width:18px; height:18px; opacity:.9}
+
+    /* Photos row: ALWAYS 1 row (even mobile) */
+    .heroPhotos{
+      display:flex;
+      gap:10px;
+      align-items:stretch;
+      justify-content:center;
+      max-width:980px;
+      margin:18px auto 0;
+    }
+    .heroPhoto{
+      flex:1 1 0;
+      min-width:0;
+      aspect-ratio: 4 / 5; /* vertical */
+      background:var(--soft);
+      position:relative;
+      overflow:hidden;
+      border-radius:0; /* sharp */
+      border:1px solid rgba(17,17,17,.06);
+    }
+    .heroPhoto img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .fallback{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center;
+      padding:12px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.35;
+    }
+
+    /* Why list */
+    .whyTitle{margin-top:16px}
+    .whyList{
+      margin:8px auto 0;
+      max-width:620px;
+      display:grid;
+      gap:8px;
+      justify-items:center;
+      text-align:center;
+      font-size:15px;
+      color:var(--text);
+      font-weight:700;
+    }
+    .whyItem{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--text);
+    }
+    .whyItem .dots{
+      color:var(--muted);
+      font-weight:800;
+      letter-spacing:.06em;
+    }
+
+    /* Trio words + soft symbols */
+    .trio{
+      margin:14px auto 0;
+      max-width:980px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:12px;
+      align-items:start;
+      text-align:center;
+    }
+    .trioItem{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      padding:10px 8px;
+    }
+    .trioWord{
+      font-family:var(--fontAccent);
+      font-weight:900;
+      letter-spacing:.08em;
+      font-size:13px;
+    }
+    .inkBlob{
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(197,106,68,.22), rgba(197,106,68,.06) 60%, rgba(0,0,0,0) 70%),
+        radial-gradient(circle at 65% 55%, rgba(17,17,17,.12), rgba(17,17,17,.02) 60%, rgba(0,0,0,0) 72%),
+        radial-gradient(circle at 45% 70%, rgba(197,106,68,.14), rgba(197,106,68,.03) 60%, rgba(0,0,0,0) 75%);
+      border:1px solid rgba(17,17,17,.08);
+      filter:saturate(1.05);
+    }
+    .trioIcon{
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:rgba(0,0,0,.02);
+      border:1px solid rgba(17,17,17,.08);
+    }
+    .trioIcon svg{
+      width:22px;
+      height:22px;
+      stroke:rgba(17,17,17,.78);
+      fill:none;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+    @media (max-width:560px){
+      .trio{grid-template-columns:1fr; gap:6px}
+      .trioItem{flex-direction:row; justify-content:center}
+      .trioWord{font-size:12px}
+    }
+
+    /* Brush divider (ink stroke) */
+    .divider{
+      max-width:980px;
+      margin:16px auto;
+      padding:0 var(--pad);
+    }
+    .brushSvg{
+      width:100%;
+      height:26px;
+      display:block;
+      opacity:.95;
+    }
+    .brushSvg path{
+      fill:none;
+      stroke:rgba(17,17,17,.35);
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    /* Gallery mosaic */
+    .galleryGrid{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:10px;
+      max-width:980px;
+      margin:0 auto;
+    }
+    .tile{
+      position:relative;
+      overflow:hidden;
+      border-radius:0; /* sharp */
+      background:var(--soft);
+      border:1px solid rgba(17,17,17,.06);
+      cursor:pointer;
+      min-height:140px;
+      user-select:none;
+    }
+    .tile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .tile .tileMeta{
+      position:absolute;
+      left:10px; bottom:10px;
+      font-size:11px;
+      color:rgba(255,255,255,.88);
+      background:rgba(0,0,0,.36);
+      border:1px solid rgba(255,255,255,.16);
+      padding:6px 8px;
+      border-radius:999px;
+      display:none;
+      backdrop-filter: blur(6px);
+    }
+    .tile.isVideo .tileMeta{display:inline-flex}
+    .tile .tileMeta svg{width:12px; height:12px; margin-right:6px; fill:rgba(255,255,255,.92); stroke:none}
+
+    .s8{grid-column:span 8}
+    .s4{grid-column:span 4}
+    .s6{grid-column:span 6}
+    .s3{grid-column:span 3}
+    .h240{min-height:240px}
+    .h200{min-height:200px}
+    .h180{min-height:180px}
+    @media (max-width:900px){
+      .s8,.s6{grid-column:span 12}
+      .s4,.s3{grid-column:span 6}
+    }
+    @media (max-width:520px){
+      .s4,.s3{grid-column:span 12}
+    }
+
+    .emptyBox{
+      max-width:980px;
+      margin:0 auto;
+      padding:14px;
+      border:1px solid rgba(17,17,17,.10);
+      border-radius:var(--radius);
+      background:#fff;
+      color:var(--muted);
+      font-size:13px;
+      display:none;
+    }
+
+    /* Cards (team / offers / reviews / contact) */
+    .grid3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:12px;
+      max-width:980px;
+      margin:0 auto;
+    }
+    @media (max-width:900px){ .grid3{grid-template-columns:1fr} }
+
+    .card{
+      border:1px solid rgba(17,17,17,.10);
+      border-radius:var(--radius);
+      background:#fff;
+      padding:16px;
+      box-shadow:none;
+    }
+    .cardTitle{
+      font-family:var(--fontAccent);
+      font-weight:900;
+      letter-spacing:.10em;
+      font-size:12px;
+      margin:0 0 10px;
+      color:rgba(17,17,17,.88);
+    }
+    .cardText{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .list{
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+      color:var(--muted);
+      font-size:14px;
+      display:grid;
+      gap:8px;
+    }
+    .list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .list li:before{
+      content:"•";
+      color:rgba(17,17,17,.55);
+      font-weight:900;
+      line-height:1;
+      margin-top:2px;
+    }
+    .price{
+      margin:12px 0 6px;
+      font-family:var(--fontAccent);
+      font-weight:900;
+      letter-spacing:.04em;
+      font-size:22px;
+      color:var(--text);
+    }
+    .cardPhoto{
+      margin-top:12px;
+      aspect-ratio: 16/10;
+      background:var(--soft);
+      overflow:hidden;
+      border-radius:0; /* sharp */
+      border:1px solid rgba(17,17,17,.06);
+      position:relative;
+    }
+    .cardPhoto img{width:100%; height:100%; object-fit:cover}
+    .cardPhoto .fallback{font-size:12px}
+
+    /* Team */
+    .teamItem{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      gap:8px;
+    }
+    .avatar{
+      width:86px; height:86px;
+      border-radius:999px;
+      overflow:hidden;
+      background:var(--soft);
+      border:1px solid rgba(17,17,17,.10);
+      position:relative;
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover}
+    .name{
+      margin:0;
+      font-weight:900;
+      letter-spacing:.02em;
+    }
+    .role{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Reviews */
+    .quote{
+      margin:0 0 10px;
+      font-size:14px;
+      color:var(--text);
+    }
+    .who{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* Contact + form */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:12px;
+      max-width:980px;
+      margin:0 auto;
+    }
+    @media (max-width:900px){ .contactGrid{grid-template-columns:1fr} }
+
+    label{
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+      margin:10px 0 6px;
+    }
+    input, textarea, select{
+      width:100%;
+      border:1px solid rgba(17,17,17,.12);
+      border-radius:var(--radius);
+      padding:12px 12px;
+      font:inherit;
+      outline:none;
+      background:#fff;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width:520px){ .row2{grid-template-columns:1fr} }
+
+    .contactLinks{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+      justify-content:flex-start;
+    }
+
+    footer{
+      padding:28px 0 40px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      margin-top:10px;
+    }
+
+    /* Floating menu button + overlay */
+    .fab{
+      position:fixed;
+      left:14px; top:14px;
+      width:46px; height:46px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid rgba(17,17,17,.14);
+      box-shadow: 0 10px 26px rgba(17,17,17,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:60;
+      cursor:pointer;
+      transition: transform .12s ease, opacity .2s ease, box-shadow .2s ease;
+      user-select:none;
+    }
+    .fab:active{transform:translateY(1px)}
+    .burger{width:18px; height:12px; display:grid; gap:3px}
+    .burger span{display:block; height:2px; border-radius:999px; background:rgba(17,17,17,.85)}
+    body.scrolled .fab{opacity:.82; box-shadow:0 10px 22px rgba(17,17,17,.08)}
+    body.scrolled .fab:hover{opacity:1}
+
+    .menuOverlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.46);
+      display:none;
+      z-index:70;
+      padding:18px;
+    }
+    .menuOverlay.open{display:block}
+    .menuPanel{
+      width:min(520px, 100%);
+      background:#fff;
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.35);
+      padding:16px;
+      margin-top:52px;
+    }
+    .menuTop{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      padding:4px 4px 10px;
+      border-bottom:1px solid rgba(17,17,17,.10);
+      margin-bottom:10px;
+    }
+    .menuTitle{
+      margin:0;
+      font-size:12px;
+      letter-spacing:.12em;
+      color:var(--muted);
+      font-weight:900;
+      font-family:var(--fontAccent);
+    }
+    .closeBtn{
+      width:40px; height:40px;
+      border-radius:999px;
+      border:1px solid rgba(17,17,17,.12);
+      background:#fff;
+      cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+    }
+    .menuLinks{
+      display:grid;
+      gap:8px;
+      padding:6px 2px 2px;
+    }
+    .menuLinks a{
+      text-decoration:none;
+      padding:12px 12px;
+      border-radius:var(--radius);
+      border:1px solid rgba(17,17,17,.10);
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.02em;
+      background:#fff;
+      transition:.12s ease;
+    }
+    .menuLinks a:hover{
+      border-color:rgba(17,17,17,.28);
+      background:rgba(0,0,0,.02);
+    }
+    .menuLinks small{
+      display:block;
+      color:var(--muted);
+      font-weight:600;
+      margin-top:2px;
+      letter-spacing:0;
+      font-size:12px;
+    }
+    .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(17,17,17,.10);
+      color:var(--muted);
+      background:#fff;
+    }
+
+    /* Lightbox */
+    .lb{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.74);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:90;
+      padding:16px;
+    }
+    .lb.open{display:flex}
+    .lbBox{
+      width:100%;
+      max-width:min(980px, 100%);
+      background:#000;
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .lbMedia{
+      width:100%;
+      max-height:78vh;
+      object-fit:contain;
+      background:#000;
+      display:block;
+    }
+    video.lbMedia{object-fit:contain}
+    .lbBar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      color: rgba(255,255,255,.86);
+      font-size:13px;
+      background: rgba(255,255,255,.08);
+    }
+    .lbBtns{display:flex; gap:8px; align-items:center}
+    .lbBtn{
+      background: rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      padding:8px 10px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-weight:900;
+    }
+
+    /* Toast */
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      width:min(520px, calc(100% - 28px));
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(17,17,17,.12);
+      box-shadow:0 10px 26px rgba(17,17,17,.12);
+      border-radius:16px;
+      padding:12px 12px;
+      z-index:120;
+      display:none;
+      backdrop-filter: blur(8px);
+    }
+    .toast.open{display:block}
+    .toastRow{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .toastText{margin:0; color:var(--text); font-size:13px}
+    .toastClose{
+      flex:0 0 auto;
+      width:34px; height:34px;
+      border-radius:999px;
+      border:1px solid rgba(17,17,17,.10);
+      background:#fff;
+      cursor:pointer;
+      font-weight:900;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Floating menu button -->
+  <div class="fab" id="fab" aria-label="открыть меню" role="button" tabindex="0">
+    <div class="burger" aria-hidden="true"><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- Menu overlay -->
+  <div class="menuOverlay" id="menuOverlay" aria-hidden="true">
+    <div class="menuPanel" role="dialog" aria-modal="true" aria-label="меню">
+      <div class="menuTop">
+        <p class="menuTitle" id="menuBrand">AFRICA EVENTS</p>
+        <button class="closeBtn" id="menuClose" type="button" aria-label="закрыть">✕</button>
+      </div>
+      <div class="menuLinks" id="menuLinks"></div>
+      <div style="padding:10px 2px 0;">
+        <span class="pill" id="menuPill">дубна • 10–100+ • под ключ</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap" id="top">
+    <!-- A) HERO -->
+    <section class="hero center" aria-label="главный экран">
+      <p class="brandline" id="brandline">africa events</p>
+      <h1 class="h1" id="heroTitle">МУЗЫКАЛЬНЫЕ ТИМБИЛДИНГИ</h1>
+      <p class="subtitle" id="heroSubtitle">объединяем музыкой</p>
+
+      <div class="heroPhotos" id="heroPhotos" aria-label="фото">
+        <div class="heroPhoto">
+          <img id="heroImg1" alt="" />
+          <div class="fallback" id="heroFb1">добавь фото<br><b>assets/hero-1.jpg</b></div>
+        </div>
+        <div class="heroPhoto">
+          <img id="heroImg2" alt="" />
+          <div class="fallback" id="heroFb2">добавь фото<br><b>assets/hero-2.jpg</b></div>
+        </div>
+        <div class="heroPhoto">
+          <img id="heroImg3" alt="" />
+          <div class="fallback" id="heroFb3">добавь фото<br><b>assets/hero-3.jpg</b></div>
+        </div>
+      </div>
+
+      <p class="desc" id="heroDesc"></p>
+
+      <div class="btnRow" aria-label="форматы">
+        <a class="btn" id="ctaLeft" href="#offers">наша локация</a>
+        <a class="btn" id="ctaRight" href="#offers">выезд Москва/МО</a>
+      </div>
+
+      <div class="spacerM"></div>
+
+      <h2 class="secTitle whyTitle" id="whyTitle">ПОЧЕМУ БАРАБАНЫ</h2>
+      <div class="whyList" id="whyList" aria-label="почему"></div>
+
+      <div class="trio" id="trio" aria-label="три чувства"></div>
+    </section>
+
+    <!-- B) Divider -->
+    <div class="divider" aria-hidden="true">
+      <svg class="brushSvg" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
+        <!-- “ink stroke” feel: multiple paths with different widths -->
+        <path d="M20 16 C 160 6, 260 26, 380 14 S 620 22, 760 14 S 900 20, 980 12" stroke-width="5.2"></path>
+        <path d="M22 18 C 170 10, 270 28, 382 16 S 620 24, 760 16 S 900 22, 978 14" stroke-width="2.8" opacity=".7"></path>
+        <path d="M24 15 C 150 8, 250 22, 372 12 S 610 20, 760 12 S 890 18, 976 10" stroke-width="1.8" opacity=".55"></path>
+      </svg>
+    </div>
+
+    <!-- C) GALLERY -->
+    <section class="section" id="gallery" aria-label="как это было">
+      <div class="center stack">
+        <h2 class="secTitle" id="galleryTitle">КАК ЭТО БЫЛО</h2>
+        <p class="secHint" id="galleryHint"></p>
+      </div>
+
+      <div class="galleryGrid" id="galleryGrid" aria-label="мозаика"></div>
+      <div class="emptyBox" id="galleryEmpty">
+        пока нет медиа в <b>assets/</b> добавь файлы из списка в CONFIG.gallery.pool
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider" aria-hidden="true">
+      <svg class="brushSvg" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M18 16 C 150 24, 280 8, 420 16 S 650 10, 780 16 S 900 12, 982 18" stroke-width="5.1"></path>
+        <path d="M20 18 C 160 26, 290 10, 422 18 S 650 12, 780 18 S 900 14, 980 20" stroke-width="2.6" opacity=".7"></path>
+      </svg>
+    </div>
+
+    <!-- D) TEAM -->
+    <section class="section" id="team" aria-label="команда">
+      <div class="center stack">
+        <h2 class="secTitle" id="teamTitle">НАША КОМАНДА</h2>
+        <p class="secHint" id="teamHint"></p>
+      </div>
+      <div class="grid3" id="teamGrid"></div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider" aria-hidden="true">
+      <svg class="brushSvg" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M20 16 C 170 8, 320 24, 470 14 S 700 22, 820 14 S 910 20, 980 12" stroke-width="5.0"></path>
+        <path d="M22 18 C 180 12, 330 26, 472 16 S 700 24, 820 16 S 910 22, 978 14" stroke-width="2.5" opacity=".68"></path>
+      </svg>
+    </div>
+
+    <!-- E) OFFERS -->
+    <section class="section" id="offers" aria-label="пакеты">
+      <div class="center stack">
+        <h2 class="secTitle" id="offersTitle">ЧТО МЫ ПРЕДЛАГАЕМ</h2>
+        <p class="secHint" id="offersHint"></p>
+      </div>
+      <div class="grid3" id="offersGrid"></div>
+
+      <div class="spacerM"></div>
+
+      <!-- F) download -->
+      <a class="btn btnWide center" id="downloadBtn" href="assets/presentation.pdf" download>скачать презентацию</a>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider" aria-hidden="true">
+      <svg class="brushSvg" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M22 16 C 140 24, 280 10, 410 18 S 640 8, 780 18 S 900 12, 980 18" stroke-width="5.1"></path>
+        <path d="M24 18 C 150 26, 290 12, 412 20 S 640 10, 780 20 S 900 14, 978 20" stroke-width="2.6" opacity=".7"></path>
+      </svg>
+    </div>
+
+    <!-- G) REVIEWS -->
+    <section class="section" id="reviews" aria-label="отзывы">
+      <div class="center stack">
+        <h2 class="secTitle" id="reviewsTitle">ОТЗЫВЫ</h2>
+        <p class="secHint" id="reviewsHint"></p>
+      </div>
+      <div class="grid3" id="reviewsGrid"></div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider" aria-hidden="true">
+      <svg class="brushSvg" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M18 16 C 160 6, 280 26, 420 14 S 650 22, 790 14 S 900 20, 982 12" stroke-width="5.2"></path>
+        <path d="M20 18 C 170 10, 290 28, 422 16 S 650 24, 790 16 S 900 22, 980 14" stroke-width="2.8" opacity=".7"></path>
+      </svg>
+    </div>
+
+    <!-- H) CONTACT -->
+    <section class="section" id="contact" aria-label="контакты и форма">
+      <div class="center stack">
+        <h2 class="secTitle" id="contactTitle">КОНТАКТЫ И ФОРМА ЗАПИСИ</h2>
+        <p class="secHint" id="contactHint"></p>
+      </div>
+
+      <div class="contactGrid">
+        <div class="card">
+          <p class="cardTitle" id="formTitle">запись</p>
+          <p class="cardText" id="formHint"></p>
+
+          <form id="leadForm" novalidate>
+            <div class="row2">
+              <div>
+                <label for="fName">имя</label>
+                <input id="fName" name="name" autocomplete="name" />
+              </div>
+              <div>
+                <label for="fContact">контакт</label>
+                <input id="fContact" name="contact" autocomplete="tel" />
+              </div>
+            </div>
+
+            <label for="fFormat">формат</label>
+            <select id="fFormat" name="format"></select>
+
+            <div class="row2">
+              <div>
+                <label for="fPeople">количество</label>
+                <input id="fPeople" name="people" inputmode="numeric" />
+              </div>
+              <div>
+                <label for="fDate">дата</label>
+                <input id="fDate" name="date" />
+              </div>
+            </div>
+
+            <label for="fMsg">комментарий</label>
+            <textarea id="fMsg" name="msg"></textarea>
+
+            <div class="contactLinks">
+              <button class="btn" type="submit" id="submitBtn">отправить</button>
+              <a class="btn btnSoft btnIcon" id="waBtn" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.8 7.3L3.5 20.5l1.5-4.1A8.5 8.5 0 1 1 20.5 11.8Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.2 8.7c.3-.6.5-.6.8-.6h.6c.2 0 .4 0 .6.4l.8 2c.1.3.1.5-.1.7l-.4.5c-.1.2-.2.3 0 .6.2.3.9 1.4 2.1 2.2 1.4 1 1.7.9 2 .8l.7-.8c.2-.2.4-.3.7-.2l2.1 1c.3.1.5.2.5.5 0 .3-.2 1-1 1.5-.8.5-1.8.7-3.1.2-1.3-.5-3-1.7-4.4-3.4-1.4-1.7-2.2-3.5-2.2-4.7 0-1.2.6-1.9.8-2.3Z" fill="currentColor" stroke="none" opacity=".8"/></svg>
+                whatsapp
+              </a>
+              <a class="btn btnSoft btnIcon" id="tgBtn" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 4.6 2.9 11.9c-1.1.4-1.1 1.9.1 2.3l4.8 1.5 1.8 5.6c.3 1 1.6 1.2 2.2.4l2.8-3.4 4.9 3.6c.8.6 2 .2 2.2-.9l2.6-14.9c.2-1.1-.9-2-2-1.5Z" fill="currentColor" opacity=".85"/></svg>
+                telegram
+              </a>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <p class="cardTitle" id="contactsTitle">контакты</p>
+          <p class="cardText" id="contactsText"></p>
+
+          <ul class="list" id="contactsList"></ul>
+        </div>
+      </div>
+
+      <footer>
+        © <span id="year"></span> <span id="footerBrand">africa events</span> • <span id="footerMeta"></span>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="просмотр">
+    <div class="lbBox">
+      <!-- media injected here -->
+      <div id="lbMediaHost"></div>
+      <div class="lbBar">
+        <div id="lbCaption">1 / 1</div>
+        <div class="lbBtns">
+          <button class="lbBtn" id="lbPrev" type="button" aria-label="предыдущее">◀</button>
+          <button class="lbBtn" id="lbNext" type="button" aria-label="следующее">▶</button>
+          <button class="lbBtn" id="lbClose" type="button" aria-label="закрыть">✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="toastRow">
+      <p class="toastText" id="toastText"></p>
+      <button class="toastClose" id="toastClose" type="button" aria-label="закрыть">✕</button>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+      Safe helpers (no script-crash)
+    ========================================================= */
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const on = (el, evt, fn, opt) => { try{ if(el) el.addEventListener(evt, fn, opt); }catch(_){} };
+    const safe = (fn) => { try{ fn(); }catch(e){ console.warn(e); } };
+
+    function escapeHTML(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+    function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+
+    function withCacheBuster(url){
+      const v = String(CONFIG.cacheBuster ?? "").trim();
+      if(!url) return url;
+      if(!v) return url;
+      const hasQ = url.includes("?");
+      return url + (hasQ ? "&" : "?") + "v=" + encodeURIComponent(v);
+    }
+
+    /* =========================================================
+      UI: Toast
+    ========================================================= */
+    const toastEl = $("#toast");
+    const toastText = $("#toastText");
+    const toastClose = $("#toastClose");
+    let toastTimer = null;
+
+    function showToast(msg){
+      safe(() => {
+        if(!toastEl || !toastText) return;
+        toastText.textContent = msg;
+        toastEl.classList.add("open");
+        if(toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("open"), 3600);
+      });
+    }
+    on(toastClose, "click", () => { if(toastEl) toastEl.classList.remove("open"); });
+
+    /* =========================================================
+      Apply theme + content
+    ========================================================= */
+    function setVar(name, value){
+      safe(() => document.documentElement.style.setProperty(name, value));
+    }
+
+    function applyTheme(){
+      safe(() => {
+        const t = CONFIG.theme || {};
+        setVar("--bg", t.bg);
+        setVar("--text", t.text);
+        setVar("--muted", t.muted);
+        setVar("--line", t.line);
+        setVar("--soft", t.soft);
+        setVar("--accent", t.accent);
+        setVar("--btnBg", t.btnBg);
+        setVar("--btnText", t.btnText);
+        setVar("--max", t.max);
+        setVar("--radius", t.radius);
+
+        // fonts
+        setVar("--fontMain", t.fontMain || "var(--fontMain)");
+        setVar("--fontAccent", t.fontAccent || "var(--fontAccent)");
+      });
+    }
+
+    function setText(id, value){
+      safe(() => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = value ?? "";
+      });
+    }
+
+    function setHref(id, value){
+      safe(() => {
+        const el = document.getElementById(id);
+        if(el) el.href = value ?? "#";
+      });
+    }
+
+    function setImg(imgEl, fbEl, src, alt){
+      safe(() => {
+        if(!imgEl || !fbEl) return;
+        const finalSrc = withCacheBuster(src);
+        imgEl.alt = alt || "";
+        fbEl.style.display = "flex";
+        imgEl.style.display = "none";
+        imgEl.src = finalSrc;
+        imgEl.onload = () => { fbEl.style.display = "none"; imgEl.style.display = "block"; };
+        imgEl.onerror = () => { imgEl.style.display = "none"; fbEl.style.display = "flex"; };
+      });
+    }
+
+    /* =========================================================
+      Menu
+    ========================================================= */
+    function initMenu(){
+      safe(() => {
+        const fab = $("#fab");
+        const overlay = $("#menuOverlay");
+        const closeBtn = $("#menuClose");
+        const linksBox = $("#menuLinks");
+
+        setText("menuBrand", String(CONFIG.brand || "").toUpperCase());
+        setText("menuPill", CONFIG.meta || "");
+
+        if(linksBox){
+          linksBox.innerHTML = "";
+          (CONFIG.menu?.links || []).forEach(item => {
+            const a = document.createElement("a");
+            a.href = item.href;
+            a.innerHTML = `${escapeHTML(item.label)}<small>${escapeHTML(item.desc || "")}</small>`;
+            linksBox.appendChild(a);
+          });
+        }
+
+        const openMenu = () => safe(() => {
+          if(!overlay) return;
+          overlay.classList.add("open");
+          overlay.setAttribute("aria-hidden","false");
+          document.body.style.overflow = "hidden";
+        });
+
+        const closeMenu = () => safe(() => {
+          if(!overlay) return;
+          overlay.classList.remove("open");
+          overlay.setAttribute("aria-hidden","true");
+          document.body.style.overflow = "";
+        });
+
+        on(fab, "click", openMenu);
+        on(fab, "keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openMenu(); }});
+        on(closeBtn, "click", closeMenu);
+        on(overlay, "click", (e)=>{ if(e.target === overlay) closeMenu(); });
+        if(linksBox){
+          $$("a", linksBox).forEach(a => on(a, "click", closeMenu));
+        }
+        on(document, "keydown", (e)=>{ if(e.key==="Escape") closeMenu(); });
+
+        on(window, "scroll", () => {
+          safe(() => document.body.classList.toggle("scrolled", window.scrollY > 10));
+        }, {passive:true});
+      });
+    }
+
+    /* =========================================================
+      Hero
+    ========================================================= */
+    function initHero(){
+      safe(() => {
+        setText("brandline", CONFIG.brandline ?? CONFIG.brand ?? "");
+        setText("heroTitle", CONFIG.hero?.title ?? "");
+        setText("heroSubtitle", CONFIG.hero?.subtitle ?? "");
+        setText("heroDesc", CONFIG.hero?.desc ?? "");
+
+        const left = $("#ctaLeft");
+        const right = $("#ctaRight");
+        if(left){
+          left.textContent = CONFIG.hero?.ctaLeft?.text ?? "наша локация";
+          left.href = CONFIG.hero?.ctaLeft?.href ?? "#offers";
+        }
+        if(right){
+          right.textContent = CONFIG.hero?.ctaRight?.text ?? "выезд Москва/МО";
+          right.href = CONFIG.hero?.ctaRight?.href ?? "#offers";
+        }
+
+        // Photos
+        const photos = CONFIG.hero?.photos || [];
+        setImg($("#heroImg1"), $("#heroFb1"), photos[0]?.src, photos[0]?.alt);
+        setImg($("#heroImg2"), $("#heroFb2"), photos[1]?.src, photos[1]?.alt);
+        setImg($("#heroImg3"), $("#heroFb3"), photos[2]?.src, photos[2]?.alt);
+
+        // Why
+        const whyBox = $("#whyList");
+        setText("whyTitle", CONFIG.hero?.whyTitle ?? "ПОЧЕМУ БАРАБАНЫ");
+        if(whyBox){
+          whyBox.innerHTML = "";
+          (CONFIG.hero?.why || []).forEach(line => {
+            const row = document.createElement("div");
+            row.className = "whyItem";
+            row.innerHTML = `<span class="dots">•</span><span>${escapeHTML(line)}</span><span class="dots">•</span>`;
+            whyBox.appendChild(row);
+          });
+        }
+
+        // Trio
+        const trio = $("#trio");
+        if(trio){
+          trio.innerHTML = "";
+          (CONFIG.hero?.trio || []).forEach((t, idx) => {
+            const item = document.createElement("div");
+            item.className = "trioItem";
+            // choose watercolor blob or svg icon
+            const mode = t.mode || "blob"; // "blob" | "icon"
+            const visual = document.createElement("div");
+            if(mode === "icon"){
+              visual.className = "trioIcon";
+              visual.innerHTML = t.svg || defaultTrioSvg(idx);
+            }else{
+              visual.className = "inkBlob";
+            }
+            const word = document.createElement("div");
+            word.className = "trioWord";
+            word.textContent = t.word || "";
+            item.appendChild(visual);
+            item.appendChild(word);
+            trio.appendChild(item);
+          });
+        }
+      });
+    }
+
+    function defaultTrioSvg(i){
+      // 3 minimal icons: smile / bolt / star
+      const icons = [
+        `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10h.01M16 10h.01"/><path d="M7.5 14c1.2 1.4 2.8 2.2 4.5 2.2s3.3-.8 4.5-2.2"/><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/></svg>`,
+        `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h8l-1 8 11-14h-8l0-6Z"/></svg>`,
+        `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.8 6.1 6.7.6-5 4.3 1.6 6.6L12 16.9 5.9 19.6 7.5 13 2.5 8.7l6.7-.6L12 2Z"/></svg>`
+      ];
+      return icons[i % icons.length];
+    }
+
+    /* =========================================================
+      Gallery (mosaic + lightbox + auto swap)
+    ========================================================= */
+    const tileLayout = [
+      { cls:"tile s8 h240" },
+      { cls:"tile s4 h240" },
+      { cls:"tile s4 h180" },
+      { cls:"tile s4 h180" },
+      { cls:"tile s4 h180" },
+      { cls:"tile s6 h200" },
+      { cls:"tile s6 h200" },
+      { cls:"tile s12 h180" }
+    ];
+
+    let lbIndex = 0;
+    let lbItems = []; // filtered pool that exists or at least defined
+
+    function initGallery(){
+      safe(() => {
+        setText("galleryTitle", CONFIG.gallery?.title ?? "КАК ЭТО БЫЛО");
+        setText("galleryHint", CONFIG.gallery?.hint ?? "");
+
+        const grid = $("#galleryGrid");
+        const empty = $("#galleryEmpty");
+        if(!grid) return;
+
+        grid.innerHTML = "";
+
+        const pool = (CONFIG.gallery?.pool || []).map(normalizeMedia);
+        const start = pool.slice(0, CONFIG.gallery?.mosaicCount ?? 8);
+        const count = Math.min(tileLayout.length, start.length || tileLayout.length);
+
+        // if no pool, show empty
+        if(pool.length === 0){
+          if(empty) empty.style.display = "block";
+          return;
+        }else{
+          if(empty) empty.style.display = "none";
+        }
+
+        // build tiles
+        for(let i=0;i<count;i++){
+          const layout = tileLayout[i] || {cls:"tile s4 h180"};
+          const item = start[i] || pool[i % pool.length];
+
+          const tile = document.createElement("div");
+          tile.className = layout.cls;
+          tile.dataset.tileIndex = String(i);
+
+          const img = document.createElement("img");
+          img.alt = item.alt || "";
+          img.loading = "lazy";
+
+          const fb = document.createElement("div");
+          fb.className = "fallback";
+          fb.innerHTML = `добавь медиа<br><b>${escapeHTML(item.src || "")}</b>`;
+
+          const meta = document.createElement("div");
+          meta.className = "tileMeta";
+          meta.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7-11-7Z"/></svg>video`;
+
+          tile.appendChild(img);
+          tile.appendChild(fb);
+          tile.appendChild(meta);
+
+          grid.appendChild(tile);
+
+          setTileMedia(tile, item, true);
+        }
+
+        // lightbox items = pool (up to 40)
+        lbItems = pool.slice(0, CONFIG.gallery?.lightboxLimit ?? 40);
+
+        // click handler (delegation)
+        on(grid, "click", (e) => {
+          const tile = e.target.closest(".tile");
+          if(!tile) return;
+          const mediaId = tile.dataset.mediaId;
+          if(!mediaId) return;
+          const idx = lbItems.findIndex(x => x.id === mediaId);
+          openLightbox(idx >= 0 ? idx : 0);
+        });
+
+        // auto swap
+        const intervalMs = clamp(Number(CONFIG.gallery?.autoSwapMs ?? 4200), 2500, 9000);
+        const perTick = clamp(Number(CONFIG.gallery?.autoSwapCount ?? 1), 1, 2);
+
+        if(CONFIG.gallery?.autoSwap !== false){
+          setInterval(() => safe(() => {
+            // do not swap if lightbox open
+            if($("#lb")?.classList.contains("open")) return;
+            const tiles = $$(".tile", grid);
+            if(!tiles.length) return;
+
+            for(let k=0;k<perTick;k++){
+              const t = tiles[Math.floor(Math.random() * tiles.length)];
+              const next = pool[Math.floor(Math.random() * pool.length)];
+              if(!t || !next) continue;
+              // avoid same item
+              if(t.dataset.mediaId === next.id) continue;
+              setTileMedia(t, next, false);
+            }
+          }), intervalMs);
+        }
+      });
+    }
+
+    function normalizeMedia(m, idx){
+      const src = String(m?.src || "").trim();
+      const type = (m?.type || inferType(src)).toLowerCase();
+      const alt = m?.alt || "";
+      const poster = m?.poster || "";
+      const id = m?.id || `${type}:${src}:${idx ?? ""}`;
+      return { id, type, src, alt, poster };
+    }
+
+    function inferType(src){
+      const s = (src || "").toLowerCase();
+      if(s.endsWith(".mp4") || s.includes(".mp4?")) return "video";
+      return "img";
+    }
+
+    function setTileMedia(tile, item, first){
+      safe(() => {
+        if(!tile) return;
+        const img = $("img", tile);
+        const fb = $(".fallback", tile);
+        const meta = $(".tileMeta", tile);
+
+        tile.dataset.mediaId = item.id;
+        tile.dataset.type = item.type;
+        tile.dataset.src = item.src;
+        tile.dataset.alt = item.alt || "";
+
+        tile.classList.toggle("isVideo", item.type === "video");
+
+        if(meta) meta.style.display = (item.type === "video") ? "inline-flex" : "none";
+
+        if(!img || !fb) return;
+
+        // For videos in mosaic: try poster if given; else use fallback thumbnail (soft)
+        const srcToLoad = (item.type === "video")
+          ? (item.poster ? item.poster : "")
+          : item.src;
+
+        if(!srcToLoad){
+          img.style.display = "none";
+          fb.style.display = "flex";
+          fb.innerHTML = item.type === "video"
+            ? `video<br><b>${escapeHTML(item.src)}</b>`
+            : `добавь фото<br><b>${escapeHTML(item.src)}</b>`;
+          return;
+        }
+
+        img.style.display = "none";
+        fb.style.display = "flex";
+        fb.innerHTML = `загрузка<br><b>${escapeHTML(srcToLoad)}</b>`;
+
+        img.onload = () => { img.style.display = "block"; fb.style.display = "none"; };
+        img.onerror = () => {
+          img.style.display = "none";
+          fb.style.display = "flex";
+          fb.innerHTML = item.type === "video"
+            ? `video<br><b>${escapeHTML(item.src)}</b>`
+            : `добавь фото<br><b>${escapeHTML(item.src)}</b>`;
+        };
+
+        img.src = withCacheBuster(srcToLoad);
+        img.alt = item.alt || "";
+      });
+    }
+
+    /* =========================================================
+      Lightbox
+    ========================================================= */
+    function initLightbox(){
+      safe(() => {
+        const lb = $("#lb");
+        const host = $("#lbMediaHost");
+        const cap = $("#lbCaption");
+        const closeBtn = $("#lbClose");
+        const prevBtn = $("#lbPrev");
+        const nextBtn = $("#lbNext");
+
+        const close = () => safe(() => {
+          if(!lb) return;
+          lb.classList.remove("open");
+          document.body.style.overflow = "";
+          if(host) host.innerHTML = "";
+        });
+
+        const step = (dir) => safe(() => {
+          if(!lbItems.length) return;
+          openLightbox(lbIndex + dir);
+        });
+
+        on(closeBtn, "click", close);
+        on(prevBtn, "click", () => step(-1));
+        on(nextBtn, "click", () => step(1));
+        on(lb, "click", (e)=>{ if(e.target === lb) close(); });
+        on(document, "keydown", (e)=>{
+          if(!lb || !lb.classList.contains("open")) return;
+          if(e.key === "Escape") close();
+          if(e.key === "ArrowRight") step(1);
+          if(e.key === "ArrowLeft") step(-1);
+        });
+
+        // expose
+        window.__closeLb = close;
+      });
+    }
+
+    function openLightbox(index){
+      safe(() => {
+        const lb = $("#lb");
+        const host = $("#lbMediaHost");
+        const cap = $("#lbCaption");
+        if(!lb || !host) return;
+        if(!lbItems.length){
+          showToast("нет медиа для просмотра");
+          return;
+        }
+
+        lbIndex = (index + lbItems.length) % lbItems.length;
+        const item = lbItems[lbIndex];
+
+        host.innerHTML = "";
+
+        if(item.type === "video"){
+          const v = document.createElement("video");
+          v.className = "lbMedia";
+          v.controls = true;
+          v.playsInline = true;
+          v.src = withCacheBuster(item.src);
+          host.appendChild(v);
+        }else{
+          const img = document.createElement("img");
+          img.className = "lbMedia";
+          img.alt = item.alt || "";
+          img.src = withCacheBuster(item.src);
+          img.onerror = () => {
+            // graceful fallback inside lightbox
+            img.remove();
+            const msg = document.createElement("div");
+            msg.style.padding = "26px 18px";
+            msg.style.color = "rgba(255,255,255,.86)";
+            msg.style.fontSize = "13px";
+            msg.innerHTML = `не найдено<br><b>${escapeHTML(item.src)}</b>`;
+            host.appendChild(msg);
+          };
+          host.appendChild(img);
+        }
+
+        if(cap) cap.textContent = `${lbIndex + 1} / ${lbItems.length}`;
+        lb.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+    }
+
+    /* =========================================================
+      Team
+    ========================================================= */
+    function initTeam(){
+      safe(() => {
+        setText("teamTitle", CONFIG.team?.title ?? "НАША КОМАНДА");
+        setText("teamHint", CONFIG.team?.hint ?? "");
+
+        const grid = $("#teamGrid");
+        if(!grid) return;
+        grid.innerHTML = "";
+
+        (CONFIG.team?.items || []).forEach((m, i) => {
+          const card = document.createElement("div");
+          card.className = "card teamItem";
+
+          const av = document.createElement("div");
+          av.className = "avatar";
+          const img = document.createElement("img");
+          const fb = document.createElement("div");
+          fb.className = "fallback";
+          fb.style.fontSize = "12px";
+          fb.innerHTML = `фото<br><b>${escapeHTML(m.photo || "")}</b>`;
+          av.appendChild(img);
+          av.appendChild(fb);
+
+          setImg(img, fb, m.photo, m.name);
+
+          const name = document.createElement("p");
+          name.className = "name";
+          name.textContent = m.name || "";
+
+          const role = document.createElement("p");
+          role.className = "role";
+          role.textContent = m.role || "";
+
+          card.appendChild(av);
+          card.appendChild(name);
+          card.appendChild(role);
+
+          grid.appendChild(card);
+        });
+      });
+    }
+
+    /* =========================================================
+      Offers
+    ========================================================= */
+    function initOffers(){
+      safe(() => {
+        setText("offersTitle", CONFIG.offers?.title ?? "ЧТО МЫ ПРЕДЛАГАЕМ");
+        setText("offersHint", CONFIG.offers?.hint ?? "");
+
+        const grid = $("#offersGrid");
+        if(!grid) return;
+        grid.innerHTML = "";
+
+        const items = CONFIG.offers?.items || [];
+        items.forEach(o => {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const title = document.createElement("div");
+          title.className = "cardTitle";
+          title.textContent = o.title || "";
+          card.appendChild(title);
+
+          const text = document.createElement("p");
+          text.className = "cardText";
+          text.textContent = o.desc || "";
+          card.appendChild(text);
+
+          const price = document.createElement("div");
+          price.className = "price";
+          price.textContent = o.price || "";
+          card.appendChild(price);
+
+          const ul = document.createElement("ul");
+          ul.className = "list";
+          (o.bullets || []).forEach(b => {
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(b));
+            ul.appendChild(li);
+          });
+          card.appendChild(ul);
+
+          const ph = document.createElement("div");
+          ph.className = "cardPhoto";
+          const img = document.createElement("img");
+          const fb = document.createElement("div");
+          fb.className = "fallback";
+          fb.innerHTML = `добавь фото<br><b>${escapeHTML(o.photo || "")}</b>`;
+          ph.appendChild(img);
+          ph.appendChild(fb);
+          setImg(img, fb, o.photo, o.title);
+
+          card.appendChild(ph);
+          grid.appendChild(card);
+        });
+
+        // download
+        const dl = $("#downloadBtn");
+        if(dl){
+          dl.textContent = CONFIG.offers?.downloadText ?? "скачать презентацию";
+          dl.href = withCacheBuster(CONFIG.offers?.pdfPath ?? "assets/presentation.pdf");
+        }
+      });
+    }
+
+    /* =========================================================
+      Reviews
+    ========================================================= */
+    function initReviews(){
+      safe(() => {
+        setText("reviewsTitle", CONFIG.reviews?.title ?? "ОТЗЫВЫ");
+        setText("reviewsHint", CONFIG.reviews?.hint ?? "");
+
+        const grid = $("#reviewsGrid");
+        if(!grid) return;
+        grid.innerHTML = "";
+
+        (CONFIG.reviews?.items || []).forEach(r => {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const q = document.createElement("p");
+          q.className = "quote";
+          q.textContent = r.text || "";
+
+          const w = document.createElement("p");
+          w.className = "who";
+          w.textContent = r.who || "";
+
+          card.appendChild(q);
+          card.appendChild(w);
+          grid.appendChild(card);
+        });
+      });
+    }
+
+    /* =========================================================
+      Contact + form (mailto safe)
+    ========================================================= */
+    function initContact(){
+      safe(() => {
+        setText("contactTitle", CONFIG.contact?.title ?? "КОНТАКТЫ И ФОРМА ЗАПИСИ");
+        setText("contactHint", CONFIG.contact?.hint ?? "");
+        setText("formTitle", CONFIG.contact?.formTitle ?? "запись");
+        setText("formHint", CONFIG.contact?.formHint ?? "");
+
+        setText("footerBrand", CONFIG.brand ?? "");
+        setText("footerMeta", CONFIG.meta ?? "");
+        setText("year", String(new Date().getFullYear()));
+
+        const list = $("#contactsList");
+        if(list){
+          list.innerHTML = "";
+          const items = CONFIG.contact?.list || [];
+          items.forEach(it => {
+            const li = document.createElement("li");
+            li.textContent = it;
+            list.appendChild(li);
+          });
+        }
+        setText("contactsTitle", CONFIG.contact?.contactsTitle ?? "контакты");
+        setText("contactsText", CONFIG.contact?.contactsText ?? "");
+
+        const wa = $("#waBtn");
+        const tg = $("#tgBtn");
+        if(wa) wa.href = CONFIG.contact?.whatsapp || "#";
+        if(tg) tg.href = CONFIG.contact?.telegram || "#";
+
+        // format options
+        const sel = $("#fFormat");
+        if(sel){
+          sel.innerHTML = "";
+          (CONFIG.contact?.formats || []).forEach(v => {
+            const opt = document.createElement("option");
+            opt.value = v;
+            opt.textContent = v;
+            sel.appendChild(opt);
+          });
+        }
+
+        // mailto submit
+        const form = $("#leadForm");
+        on(form, "submit", (e) => {
+          e.preventDefault();
+          safe(() => {
+            const email = String(CONFIG.contact?.emailForMailto || "").trim();
+            if(!email || email.toLowerCase().includes("your_email")){
+              showToast("сначала укажи email в CONFIG.contact.emailForMailto");
+              return;
+            }
+
+            const name = ($("#fName")?.value || "").trim();
+            const contact = ($("#fContact")?.value || "").trim();
+            const format = ($("#fFormat")?.value || "").trim();
+            const people = ($("#fPeople")?.value || "").trim();
+            const date = ($("#fDate")?.value || "").trim();
+            const msg = ($("#fMsg")?.value || "").trim();
+
+            const subject = encodeURIComponent(`заявка ${CONFIG.brand || ""} ${format || ""}`.trim());
+            const lines = [
+              `имя: ${name || "—"}`,
+              `контакт: ${contact || "—"}`,
+              `формат: ${format || "—"}`,
+              `количество: ${people || "—"}`,
+              `дата: ${date || "—"}`,
+              "",
+              "комментарий:",
+              msg || "—",
+              "",
+              "источник: сайт (github pages)"
+            ];
+            const body = encodeURIComponent(lines.join("\n"));
+            window.location.href = `mailto:${encodeURIComponent(email)}?subject=${subject}&body=${body}`;
+          });
+        });
+      });
+    }
+
+    /* =========================================================
+      Boot
+    ========================================================= */
+    function boot(){
+      safe(() => applyTheme());
+      safe(() => initMenu());
+      safe(() => initHero());
+      safe(() => initLightbox());
+      safe(() => initGallery());
+      safe(() => initTeam());
+      safe(() => initOffers());
+      safe(() => initReviews());
+      safe(() => initContact());
+    }
+
+    // Run after CONFIG is defined
+    document.addEventListener("DOMContentLoaded", boot);
+
+    /* =========================================================
+      CONFIG — меняй только это (удобно с телефона)
+    ========================================================= */
+    const CONFIG = {
+      cacheBuster: "1658",
+
+      brand: "africa events",
+      brandline: "africa events",
+      meta: "дубна • 10–100+ • под ключ",
+
+      theme: {
+        bg: "#ffffff",
+        text: "#111111",
+        muted: "#6b7280",
+        line: "#eaeaea",
+        soft: "#f5f5f5",
+        accent: "#c56a44",
+        btnBg: "#111111",
+        btnText: "#ffffff",
+        max: "1120px",
+        radius: "14px"
+        // fontMain / fontAccent можно добавить сюда при желании
+      },
+
+      menu: {
+        links: [
+          { href:"#top", label:"главная", desc:"эмоция и форматы" },
+          { href:"#gallery", label:"как это было", desc:"медиа и атмосфера" },
+          { href:"#team", label:"команда", desc:"кто ведёт" },
+          { href:"#offers", label:"пакеты", desc:"форматы и цены" },
+          { href:"#reviews", label:"отзывы", desc:"соцдоказательство" },
+          { href:"#contact", label:"запись", desc:"контакты и форма" }
+        ]
+      },
+
+      hero: {
+        title: "МУЗЫКАЛЬНЫЕ ТИМБИЛДИНГИ",
+        subtitle: "объединяем музыкой",
+
+        photos: [
+          { src:"assets/hero-1.jpg", alt:"hero 1" },
+          { src:"assets/hero-2.jpg", alt:"hero 2" },
+          { src:"assets/hero-3.jpg", alt:"hero 3" }
+        ],
+
+        desc:
+`для корпоративов, свадеб и любых мероприятий от 10 до 100+ человек
+
+соберём формат под вашу программу
+и интегрируемся в любой сценарий
+
+африканские, японские и кубинские барабаны
+перкуссия, игры и интерактивные танцы
+которые вовлекают каждого участника`,
+
+        ctaLeft: { text:"наша локация", href:"#offers" },
+        ctaRight:{ text:"выезд Москва/МО", href:"#offers" },
+
+        whyTitle: "ПОЧЕМУ БАРАБАНЫ",
+        why: [
+          "яркие эмоции",
+          "сплочение команды",
+          "сброс напряжения",
+          "раскрепощение"
+        ],
+
+        trio: [
+          { word:"ВЕСЕЛО", mode:"blob" },
+          { word:"ЭНЕРГИЧНО", mode:"icon" },   // пример: можно заменить на blob
+          { word:"НЕОБЫЧНО", mode:"icon" }
+        ]
+      },
+
+      gallery: {
+        title: "КАК ЭТО БЫЛО",
+        hint: "нажми на плитку — откроется просмотр",
+        mosaicCount: 8,
+        autoSwap: true,
+        autoSwapMs: 4200,
+        autoSwapCount: 1,
+        lightboxLimit: 40,
+
+        // pool supports {type:'img'|'video', src:'assets/..', alt:'', poster:''}
+        // можно миксовать фото и mp4 (для видео желательно указать poster)
+        pool: Array.from({length: 40}).map((_, i) => ({
+          type: "img",
+          src: `assets/g${i+1}.jpg`,
+          alt: `галерея ${i+1}`
+        }))
+        // пример видео:
+        // .concat([{ type:"video", src:"assets/v1.mp4", poster:"assets/v1-poster.jpg", alt:"видео" }])
+      },
+
+      team: {
+        title: "НАША КОМАНДА",
+        hint: "мягко и уверенно ведём людей без кринжа",
+        items: [
+          { name:"имя фамилия", role:"ведущий", photo:"assets/team-1.jpg" },
+          { name:"имя фамилия", role:"музыкант", photo:"assets/team-2.jpg" },
+          { name:"имя фамилия", role:"организация", photo:"assets/team-3.jpg" }
+        ]
+      },
+
+      offers: {
+        title: "ЧТО МЫ ПРЕДЛАГАЕМ",
+        hint: "три пакета чтобы быстро выбрать формат",
+        pdfPath: "assets/presentation.pdf",
+        downloadText: "скачать презентацию",
+        items: [
+          {
+            title:"наша локация",
+            desc:"вы приезжаете к нам и получаете готовый формат без сложной логистики",
+            bullets:["60–90 минут","инструменты и ведущий","10–100+ человек","идеально как модуль программы"],
+            price:"от ХХ 000 ₽",
+            photo:"assets/offer-1.jpg"
+          },
+          {
+            title:"выезд Москва/МО",
+            desc:"приезжаем на вашу площадку и ведём под ключ",
+            bullets:["логистика и монтаж","инструменты и ведущие","структура и финал","адаптация под аудиторию"],
+            price:"от ХХ 000 ₽",
+            photo:"assets/offer-2.jpg"
+          },
+          {
+            title:"опции",
+            desc:"расширения для вау эффекта и сценариев под повод",
+            bullets:["интерактивные танцы","дополнительная перкуссия","финальный перформанс","фото и видео ритуал"],
+            price:"по запросу",
+            photo:"assets/offer-3.jpg"
+          }
+        ]
+      },
+
+      reviews: {
+        title: "ОТЗЫВЫ",
+        hint: "коротко и по сути",
+        items: [
+          { text:"редкий формат люди быстро включились финал мощный", who:"hr корпоратив 35 человек" },
+          { text:"встроили в программу гости в восторге", who:"ивент площадка" },
+          { text:"люди реально сплотились и стало легко общаться", who:"частное мероприятие" }
+        ]
+      },
+
+      contact: {
+        title: "КОНТАКТЫ И ФОРМА ЗАПИСИ",
+        hint: "самый быстрый путь — написать в мессенджер или оставить заявку",
+        formTitle: "запись",
+        formHint: "заполните 30 секунд и мы предложим формат под вашу группу",
+        contactsTitle: "контакты",
+        contactsText: "работаем с группами 10–100+ человек интегрируемся в любой сценарий",
+
+        list: [
+          "город: дубна",
+          "телефон: +7 XXX XXX XX XX",
+          "время: по договорённости"
+        ],
+
+        formats: [
+          "наша локация",
+          "выезд Москва/МО",
+          "нужно подобрать формат"
+        ],
+
+        // links
+        whatsapp: "https://wa.me/79991234567",
+        telegram: "https://t.me/USERNAME",
+
+        // mailto
+        emailForMailto: "YOUR_EMAIL@MAIL.COM"
+      }
+    };
+
+    /* =========================================================
+      Anti-cache instruction
+      ---------------------------------------------------------
+      чтобы увидеть обновления на github pages:
+      1) измени CONFIG.cacheBuster (например 1658 -> 1659)
+      2) открой сайт так: /?v=1659
+      3) если нужно — добавь новый номер снова
+    ========================================================= */
+  </script>
+</body>
+</html>
+```0
