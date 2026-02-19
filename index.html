@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Africa Events — Барабанные тимбилдинги</title>
+
+  <!-- Похожий на Tilda “чистый” гротеск -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --container: 960px;
+      --text: #111;
+      --muted: #222;
+      --bg: #fff;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* Контейнер как у типичных блоков Tilda */
+    .container{
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    /* Вертикальные отступы в “тильдовском” стиле */
+    .section{
+      padding: 56px 0;
+    }
+
+    .center{
+      text-align: center;
+    }
+
+    /* Заголовки и межстрочные интервалы, чтобы было “как на скрине” */
+    .brand{
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 0.2px;
+      margin: 0 0 28px;
+    }
+
+    .h1{
+      font-weight: 700;
+      font-size: clamp(28px, 5vw, 46px);
+      line-height: 1.15;
+      letter-spacing: 0.5px;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+
+    .subh1{
+      font-weight: 600;
+      font-size: clamp(18px, 3.5vw, 28px);
+      line-height: 1.25;
+      margin: 0 0 34px;
+    }
+
+    .lead{
+      font-weight: 500;
+      font-size: clamp(16px, 2.4vw, 20px);
+      line-height: 1.7;
+      letter-spacing: 2px;           /* похоже на Тильду: “разреженный” текст */
+      text-transform: lowercase;      /* визуально похоже на скрин (можно убрать) */
+      color: var(--muted);
+      margin: 0 auto 44px;
+      max-width: 720px;
+    }
+
+    /* Блок картинки: “карточка” с мягкими скруглениями */
+    .hero-image{
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f3f3f3;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+
+    .hero-image img{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Следующий заголовок секции */
+    .h2{
+      font-weight: 700;
+      font-size: clamp(26px, 4vw, 44px);
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    /* Немного больше воздуха, как на мобиле */
+    @media (max-width: 480px){
+      .section{ padding: 44px 0; }
+      .brand{ margin-bottom: 22px; }
+      .lead{ letter-spacing: 1.2px; }
+      .hero-image{ border-radius: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ПЕРВЫЙ ЭКРАН -->
+  <section class="section">
+    <div class="container center">
+      <div class="brand">Africa Events</div>
+
+      <h1 class="h1">БАРАБАННЫЕ ТИМБИЛДИНГИ</h1>
+      <div class="subh1">объединяем музыкой</div>
+
+      <p class="lead">
+        для корпоративов, свадеб и любых<br>
+        мероприятий от 10 до 100+ человек
+      </p>
+
+      <div class="hero-image" aria-label="Фото тимбилдинга с барабанами">
+        <!-- положи картинку в assets/hero.jpg -->
+        <img src="assets/hero.jpg" alt="Люди играют на джембе на мероприятии">
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛЕДУЮЩИЙ БЛОК (как на скрине “About Meridians”) -->
+  <section class="section">
+    <div class="container center">
+      <h2 class="h2">About Meridians</h2>
+    </div>
+  </section>
+</body>
+</html>
